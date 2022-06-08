@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:29:52 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:26:12 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:14:46 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if (s == NULL)
+	if (!s)
 		return (0);
 	i = 0;
 	while (s[i] != '\0')

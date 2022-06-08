@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:51:25 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:30:12 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:18:44 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@
 int	ft_putstr(char *s)
 {
 	size_t	printed;
-	int		ret;
 
 	printed = 0;
-	ret = 0;
-	if (s == NULL)
+	if (!s)
 		return (ft_putstr("(null)"));
 	while (*s != '\0')
-	{
-		ret = write(1, s++, 1);
-		if (ret == -1)
-			return (ret);
-		printed += ret;
-	}
+		printed += ft_putchar(*s++);
 	return (printed);
 }

@@ -6,11 +6,13 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:03:24 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:40:40 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:42:56 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	 g_catch_error = 0;
 
 // PRINTF(3)               BSD Library Functions Manual               PRINTF(3)
 //
@@ -54,8 +56,8 @@ int	ft_printf(const char *format, ...)
 	int		printed;
 	int		i;
 
-	if (format == NULL)
-		return (0);
+	//if (!format)
+	//	return (0);
 	va_start(args, format);
 	printed = 0;
 	i = 0;
@@ -71,11 +73,13 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
+	if (g_catch_error == -1)
+		return (-1);
 	return (printed);
 }
 
 // Function takes the format after the '%' and redirects to the relevant
-// functon to handle the argument
+// function to handle the argument
 //
 // Format as per subject
 // - %c Prints a single character.
@@ -95,7 +99,7 @@ int	ft_printf(const char *format, ...)
 */
 int	format_parser(char format, va_list args)
 {
-	int		printed;
+	int	printed;
 
 	printed = 0;
 	if (format == 'c')
@@ -105,13 +109,13 @@ int	format_parser(char format, va_list args)
 	else if (format == 'p')
 	{
 		printed += ft_putstr("0x");
-		printed += ft_u_putnbr_base(va_arg(args, uintptr_t), BASE16LOWER);
+		printed += ft_u_putnbr_base(va_arg(args, unsigned long long int), BASE16LOWER);
 		//printed += ft_u_add(va_arg(args, uintptr_t), BASE16LOWER);
 	}
 	else if (format == 'd' || format == 'i')
 		printed += ft_putnbr(va_arg(args, int));
 	else if (format == 'u')
-		printed += ft_u_putnbr_base(va_arg(args, uintptr_t), BASE10);
+		printed += ft_u_putnbr_base(va_arg(args, unsigned int), BASE10);
 	else if (format == 'x')
 		printed += ft_u_putnbr_base(va_arg(args, unsigned int), BASE16LOWER);
 	else if (format == 'X')
@@ -127,22 +131,16 @@ int	format_parser(char format, va_list args)
 31:     TEST(7, print(" %p %p ", INT_MIN, INT_MAX));
 32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
 */
+
 /*
 int	main(void)
 {
 	int	i;
 	int	j;
-	int	k;
-	char	*ptr;
-	char	c;
 
-	c = '0';
-	ptr = NULL;
-	k = 666;
-	//ptr = &k;
-	i = ft_printf("ft_printf : [%p] ", -1);
+	i = ft_printf("ft_printf : %c %c %c ", '0', 0, '1');
 	printf("Printed [%d]\n", i);
-	j =    printf("   printf : [%p] ", -1);
+	j =    printf("   printf : %c %c %c ", '0', 0, '1');
 	printf("Printed [%d]\n", j);
 	return (0);
 }

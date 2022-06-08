@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:01:05 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:38:59 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:28:36 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <stdlib.h>
 # include <stdio.h> // FOR TESTS ONLY
 # include <limits.h> // For Tests
+# include <errno.h>
 
 // ft_printf.c
 int		ft_printf(const char *format, ...);
