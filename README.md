@@ -461,4 +461,11 @@ BSD                            October 25, 2002                            BSD
 
   
   
-# Resources
+# Testing
+
+## Testers
+- [Tripouille / printfTester](https://github.com/Tripouille/printfTester)
+- [xicodomingues / francinette](https://github.com/xicodomingues/francinette)
+  
+## Result
+ ![ft_printf francinette result](img/ft_printf_tester.gif)
