@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:13:20 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:21:40 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:13:14 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 // Return value     | Number of chars written
 // External functs. | write
 // Description      | Outputs the integer ’n’ to the stdout in the given base.
-//
-// INT_MIN = -2147483648
-//
-// Note: In this implementation a static variable is usedd to keep the
-// balance of total chars already printed between recursive calls to the 
-// function
 int	ft_putnbr_base(int n, char *base)
 {
 	size_t			printed;

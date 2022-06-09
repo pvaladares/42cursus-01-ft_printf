@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 11:29:52 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 23:14:46 by pvaladar         ###   ########.fr       */
+/*   Created: 2022/02/16 16:40:15 by pvaladar          #+#    #+#             */
+/*   Updated: 2022/06/09 11:49:18 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@
 //
 // RETURN VALUES
 //      The strlen() function returns the number of characters that precede the
-//      terminating NULL character.  
+//      terminating NULL character. 
+//
+// Change log:
+// 2022/06/08 Changed to fit the behaviour of printf with NULL string 
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;

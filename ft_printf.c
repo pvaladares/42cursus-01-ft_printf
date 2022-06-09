@@ -6,13 +6,11 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:03:24 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 23:42:56 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:45:37 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	 g_catch_error = 0;
 
 // PRINTF(3)               BSD Library Functions Manual               PRINTF(3)
 //
@@ -43,21 +41,25 @@ int	 g_catch_error = 0;
 //     the trailing `\0' used to end output to strings).
 //     Functions returns a negative value if an error occurs.
 //
-// ------
-//
-// Variadic Function uses the following, based on STDARG(3):
-// - va_list  : type to hold the information about variable arguments
-// - va_start : initialize the variable argument list name given
-// - va_arg   : retrieve the next argument
-// - va_end   : end the argument list 
+// ----------------------------------------------------------------------------
+/*
+ * Variadic Function uses the following, based on STDARG(3):
+ * 		- va_list  : type to hold the information about variable arguments
+ * 		- va_start : initialize the variable argument list name given
+ *  	- va_arg   : retrieve the next argument
+ * 		- va_end   : end the argument list 
+ */
+// Function will find every character after '%' and use it to select the 
+// correct format/function to handle the argument. If not format is provided 
+// the function will simply write to stdout the provided text. In case there
+// is an error writting to the stdout -1 will be returned (see implementation
+// of ft_putchar), else the normal behaviour is to return the printed characters
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		printed;
 	int		i;
 
-	//if (!format)
-	//	return (0);
 	va_start(args, format);
 	printed = 0;
 	i = 0;
@@ -73,30 +75,25 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	if (g_catch_error == -1)
-		return (-1);
 	return (printed);
 }
 
-// Function takes the format after the '%' and redirects to the relevant
-// function to handle the argument
+// Function takes the format parameter and redirects to the relevant function 
+// to handle the argument. The value of each parameter is retrivied by using
+// the `va_args` function
+// The return value is the number of characters printed.
 //
-// Format as per subject
-// - %c Prints a single character.
-// - %s Prints a string (as defined by the common C convention).
-// - %p The void * pointer argument has to be printed in hexadecimal format.
-// - %d Prints a decimal (base 10) number.
-// - %i Prints an integer in base 10.
-// - %u Prints an unsigned decimal (base 10) number.
-// - %x Prints a number in hexadecimal (base 16) lowercase format.
-// - %X Prints a number in hexadecimal (base 16) uppercase format.
-// - %% Prints a percent sign.
-/*
-	######### NOT WORKING #######
-	- %p
-	- %s with NULL
-	- unsigned %x %X %u
-*/
+/* Format as per subject
+ * 		- %c Prints a single character.
+ * 		- %s Prints a string (as defined by the common C convention).
+ * 		- %p The void * pointer argument has to be printed in hexadecimal format.
+ * 		- %d Prints a decimal (base 10) number.
+ * 		- %i Prints an integer in base 10.
+ * 		- %u Prints an unsigned decimal (base 10) number.
+ * 		- %x Prints a number in hexadecimal (base 16) lowercase format.
+ * 		- %X Prints a number in hexadecimal (base 16) uppercase format.
+ * 		- %% Prints a percent sign.
+ */
 int	format_parser(char format, va_list args)
 {
 	int	printed;
@@ -109,8 +106,7 @@ int	format_parser(char format, va_list args)
 	else if (format == 'p')
 	{
 		printed += ft_putstr("0x");
-		printed += ft_u_putnbr_base(va_arg(args, unsigned long long int), BASE16LOWER);
-		//printed += ft_u_add(va_arg(args, uintptr_t), BASE16LOWER);
+		printed += ft_putptr(va_arg(args, uintptr_t), BASE16LOWER);
 	}
 	else if (format == 'd' || format == 'i')
 		printed += ft_putnbr(va_arg(args, int));
@@ -124,24 +120,3 @@ int	format_parser(char format, va_list args)
 		printed += ft_putchar('%');
 	return (printed);
 }
-
-/*
-25:     TEST(1, print(" %p ", -1));
-30:     TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
-31:     TEST(7, print(" %p %p ", INT_MIN, INT_MAX));
-32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
-*/
-
-/*
-int	main(void)
-{
-	int	i;
-	int	j;
-
-	i = ft_printf("ft_printf : %c %c %c ", '0', 0, '1');
-	printf("Printed [%d]\n", i);
-	j =    printf("   printf : %c %c %c ", '0', 0, '1');
-	printf("Printed [%d]\n", j);
-	return (0);
-}
-*/

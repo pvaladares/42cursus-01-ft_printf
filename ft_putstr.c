@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:51:25 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 23:18:44 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:48:30 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 // Description      | Outputs the string ’s’ to the stdout.
 //
 // Change log:
-// 2022/06/08 Adapted to fit the behaviour of printf with NULL string
+// 2022/06/08 Changed to fit the behaviour of printf with NULL string
 int	ft_putstr(char *s)
 {
 	size_t	printed;
 
-	printed = 0;
 	if (!s)
 		return (ft_putstr("(null)"));
+	printed = 0;
 	while (*s != '\0')
 		printed += ft_putchar(*s++);
 	return (printed);

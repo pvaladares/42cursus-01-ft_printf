@@ -6,7 +6,7 @@
 /*   By: pvaladar <pvaladar@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:13:20 by pvaladar          #+#    #+#             */
-/*   Updated: 2022/06/08 16:15:01 by pvaladar         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:12:46 by pvaladar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 // Return value     | Number of chars written
 // External functs. | write
 // Description      | Outputs the integer ’n’ to the stdout.
-//
-// INT_MIN = -2147483648
-// Note: In this implementation a static variable is usedd to keep the
-// balance of total chars already printed between recursive calls to the 
-// function; The static variable concept was learnt from Get Next Line project
 int	ft_putnbr(int n)
 {
 	size_t					printed;
